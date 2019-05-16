@@ -131,6 +131,14 @@ type OrderBookItem struct {
 
 type OrderStatusResult struct {
 	Status string `json:"status"`
+	Transactions []OrderStatusTransactionItem `json:"transactions"`
+}
+
+type OrderStatusTransactionItem struct {
+	Id int64 `json:"tid"`
+	Price float64 `json:"price,string"`
+	Usd float64 `json:"usd,string"`
+	Btc float64 `json:"btc,string"`
 }
 
 type OpenOrder struct {
