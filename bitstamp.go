@@ -3,6 +3,7 @@ package bitstamp
 import (
 	"crypto/hmac"
 	"crypto/sha256"
+	"crypto/tls"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -179,6 +180,7 @@ func privateQuery(path string, values url.Values, v interface{}) error {
 
 	// create the request
 	//log.Println(endpoint.String(), values)
+	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	req, err := http.NewRequest("POST", endpoint.String(), reqBody)
 	if err != nil {
 		return err
